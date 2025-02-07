@@ -1,6 +1,7 @@
 # Linked list 
 
-Implementation of a linked list for type int. `main.c` is purely for demonstration purposes, and the linkedList.c/.h can be used independetly.
+A simple application to make random Moby Dick quotes and edit them. Demonstrates a variation on a Linked List, and using tail call optimization to recursively edit it.
+
 
 # Build
-To build run `make` in the root directory.
+To build run `make` in the root directory. Requires gcc compiler or another compiler with tail call optimization.
