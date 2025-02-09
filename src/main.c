@@ -9,25 +9,33 @@
 
 int main() {
   printf("*** random Moby Dick quote ***\n\n\n\n");
-  getchar();
   LinkedList dick = extractMobyDick();
   LinkedList randomDick = randomQuote(dick);
+  printList(randomDick);
+
+  printf("\n-------------------------------------\n");
+  printf("\n\nKeep this quote?\n");
+  printf("y to keep, any key to generate new quote\n");
+  char c = getchar();
+
+  while (c != 'y') {
+    freeList(randomDick);
+    randomDick = randomQuote(dick);
+    printList(randomDick);
+    printf("-------------------------------------\n");
+    printf("Keep this quote? y\n");
+    c = getchar();
+  }
+
   freeList(dick);
-  printList(randomDick);
-
-  printf("\n\n*** remove the last word ***\n\n");
-  getchar();
-
-  pop(&randomDick);
-  printList(randomDick);
 
   printf("\n\n*** Add your own string to the end ***\b\n");
+  getchar();
   char str[200];
   fgets(str, 200, stdin);
   trimBuffer(str);
-  randomDick = append(randomDick, str);
-  printList(randomDick);
 
+  randomDick = append(randomDick, str);
   printf("\n\n*** Add a string to the start ***\n\n");
 
   fgets(str, 200, stdin);

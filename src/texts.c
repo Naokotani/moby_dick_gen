@@ -11,7 +11,7 @@ int randomNumber(int min_num, int max_num);
 
 LinkedList randomQuote(LinkedList list) {
   int start = randomNumber(0, list.size);
-  int end = randomNumber(start, start + 300);
+  int end = randomNumber(start, start + 150);
   return subList(list, start, end);
 }
 
