@@ -74,6 +74,7 @@ LinkedList rest(LinkedList list);
 
 /*
  *  used to recursively search through a linked list if the index is not 0.
+ *  This is the "at" fuction but I gave it a different name.
  */
 void getIndex(LinkedList list, int index);
 
@@ -84,6 +85,7 @@ void pop(LinkedList *list);
 
 /*
  * Finds the index of the first `Node` where node->value equals `value`
+ * This is the "find" function, but I gave it a slighty different name
  */
 size_t findFirst(LinkedList list, char *string);
 

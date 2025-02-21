@@ -3,10 +3,29 @@
 #include <stdlib.h>
 #include <string.h>
 
+/*
+ * Returns the length of the linked list.
+ */
 size_t size(LinkedList list) { return list.size; }
+
+/*
+ * Gets the value in the first node of the linked list.
+ */
 String *head(LinkedList list) { return list.first->string; }
+
+/*
+ * Gets the value in the final node of the linked list.
+ */
 String *tail(LinkedList list) { return list.last->string; }
+
+/*
+ *  Retrieves the first `Node` from the linked list;
+ */
 Node *first(LinkedList list) { return list.first; }
+
+/*
+ *  Retrieves the last `Node` from the linked list;
+ */
 Node *last(LinkedList list) { return list.last; }
 
 void freeNode(Node *node) {
@@ -24,6 +43,9 @@ Node *createNode(char *string) {
   return node;
 }
 
+/*
+ *  Creates and initilizes a new `LinkedList`
+ */
 LinkedList create(char *string) {
   Node *node = createNode(string);
   node->next = NULL;
@@ -42,6 +64,10 @@ LinkedList createEmpty() {
   return list;
 }
 
+/*
+ *  Apeend a `Node` after the final `Node` of a linked list.
+ *  the value is the value to be placed in node->value.
+ */
 LinkedList append(LinkedList list, char *string) {
   Node *node = createNode(string);
   if (list.first == NULL) {
@@ -55,6 +81,10 @@ LinkedList append(LinkedList list, char *string) {
   return list;
 }
 
+/*
+ *  Prepends a `Node` before first `Node` of a linked list.
+ *  the value is the value to be placed in node->value.
+ */
 LinkedList prepend(LinkedList list, char *string) {
   Node *node = createNode(string);
   node->next = list.first;
@@ -63,6 +93,9 @@ LinkedList prepend(LinkedList list, char *string) {
   return list;
 }
 
+/*
+ *  Frees the memory for a linked List.
+ */
 void freeList(LinkedList list) {
   Node *currNode = list.first;
 
@@ -100,6 +133,10 @@ LinkedList restSublist(Node *node) {
   }
 }
 
+/*
+ *  Retuns a new list composed of all nodes in a `LinkedList` after the first.
+ *  This can be used to recursively searched the `LinkedList`
+ */
 LinkedList rest(LinkedList list) {
   if (list.size == 1) {
     printf("List contains only one element\n");
@@ -119,6 +156,10 @@ void getIndexRecur(LinkedList list, int index, int currIndex) {
   freeList(newList);
 }
 
+/*
+ *  used to recursively search through a linked list if the index is not 0.
+ *  This is the "at" fuction but I gave it a different name.
+ */
 void getIndex(LinkedList list, int index) {
   if (index == (int)list.size) {
     printf("Index is out of bounds");
@@ -133,6 +174,9 @@ void getIndex(LinkedList list, int index) {
   }
 }
 
+/*
+ * Removes the final element from a `LinkedList`.
+ */
 void pop(LinkedList *list) {
   Node *prevNode = {0};
   Node *currNode = first(*list);
@@ -160,6 +204,10 @@ size_t findFirstRecur(Node *node, char *string, size_t currIndex) {
   return findFirstRecur(node->next, string, ++currIndex);
 }
 
+/*
+ * Finds the index of the first `Node` where node->value equals `value`
+ * This is the "find" function, but I gave it a slighty different name
+ */
 size_t findFirst(LinkedList list, char *string) {
   size_t currIndex = 0;
   Node *node = first(list);
@@ -170,6 +218,10 @@ size_t findFirst(LinkedList list, char *string) {
   }
 }
 
+/*
+ * Searched through a `LinkedList` to check if it contains `value`
+ * returns 1 if present and 0 if not present;
+ */
 int contains(LinkedList list, char *string) {
   int found = findFirst(list, string);
   if (found >= 0) {
@@ -179,6 +231,9 @@ int contains(LinkedList list, char *string) {
   }
 }
 
+/**
+ * Prints the string in a node.
+ */
 void printNode(Node *node) {
   char *str = malloc(sizeof(char) * node->string->length);
   strcpy(str, node->string->string);
@@ -186,6 +241,9 @@ void printNode(Node *node) {
   free(str);
 }
 
+/*
+ * Prints the entire list.
+ */
 void printList(LinkedList list) {
   Node *currNode = first(list);
   while (currNode != NULL) {
